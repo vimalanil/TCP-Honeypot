@@ -5,7 +5,7 @@ import logging
 import os
 from utils.geoip_lookup import get_geoip_info
 from services.fake_ssh import handle_ssh
-from services.fake_http import handle_http
+from services.fake_http import start_fake_http
 
 # Setup logging
 os.makedirs("logs", exist_ok=True)
@@ -18,7 +18,7 @@ logging.basicConfig(
 # Ports to listen on
 PORTS = {
     2222: handle_ssh,  # SSH
-    8080: handle_http, # HTTP
+    8080: start_fake_http, # HTTP
     12345: handle_ssh  # Custom or generic fake service
 }
 
