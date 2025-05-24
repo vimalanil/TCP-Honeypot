@@ -1,0 +1,38 @@
+2025-05-23 12:22:52,378 - Listening on port 2222
+2025-05-23 12:22:52,379 - Listening on port 8080
+2025-05-23 12:22:52,390 - Listening on port 12345
+2025-05-23 12:23:04,674 - Listening on port 2222
+2025-05-23 12:23:04,675 - Listening on port 8080
+2025-05-23 12:23:04,675 - Listening on port 12345
+2025-05-23 12:24:19,370 - Listening on port 2222
+2025-05-23 12:24:19,370 - Listening on port 8080
+2025-05-23 12:24:19,371 - Listening on port 12345
+2025-05-23 12:25:48,259 - Connection attempt from 127.0.0.1:2222
+2025-05-23 12:25:48,906 - GeoIP Info: 127.0.0.1 - Unknown, Unknown
+2025-05-23 12:26:19,882 - Connection attempt from 127.0.0.1:8080
+2025-05-23 12:26:20,584 - GeoIP Info: 127.0.0.1 - Unknown, Unknown
+2025-05-23 12:27:20,424 - Connection attempt from 127.0.0.1:2222
+2025-05-23 12:27:21,193 - GeoIP Info: 127.0.0.1 - Unknown, Unknown
+2025-05-23 12:28:46,210 - Connection attempt from 127.0.0.1:8080
+2025-05-23 12:28:47,432 - GeoIP Info: 127.0.0.1 - Unknown, Unknown
+2025-05-23 12:46:06,252 - Listening on port 2222
+2025-05-23 12:46:06,252 - Listening on port 8080
+2025-05-23 12:46:06,253 - Listening on port 12345
+2025-05-23 12:50:18,163 - Listening on port 2222
+2025-05-23 12:50:18,164 - Listening on port 8080
+2025-05-23 12:50:18,180 - Listening on port 12345
+2025-05-23 12:53:59,473 - Listening on port 2222
+2025-05-23 12:53:59,475 - Listening on port 8080
+2025-05-23 12:53:59,475 - Listening on port 12345
+2025-05-23 13:03:45,400 - Listening on port 2222
+2025-05-23 13:03:45,400 - Listening on port 8080
+2025-05-23 13:03:45,400 - Listening on port 12345
+2025-05-23 13:04:44,861 - Connection attempt from 192.168.248.37:2222
+2025-05-23 13:04:44,880 - Connection attempt from 192.168.248.37:8080
+2025-05-23 13:04:57,700 - GeoIP Info: 192.168.248.37 - Unknown, Unknown
+2025-05-23 13:04:57,719 - GeoIP Info: 192.168.248.37 - Unknown, Unknown
+2025-05-23 13:05:42,465 - Connection attempt from 192.168.248.37:2222
+2025-05-23 13:05:58,075 - GeoIP Info: 192.168.248.37 - Unknown, Unknown
+2025-05-24 11:32:30,139 - Listening on port 2222
+2025-05-24 11:32:30,140 - Listening on port 8080
+2025-05-24 11:32:30,140 - Listening on port 12345
