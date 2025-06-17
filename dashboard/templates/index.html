@@ -1,0 +1,37 @@
+!DOCTYPE html>
+<html>
+<head>
+    <title>Honeypot Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .log-box {
+            background: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            max-height: 600px;
+            overflow-y: scroll;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .log-entry {
+            font-family: monospace;
+            border-bottom: 1px solid #eee;
+            padding: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🛡 Honeypot Dashboard</h1>
+    <div class="log-box">
+        {% for log in logs %}
+            <div class="log-entry">{{ log }}</div>
+        {% endfor %}
+    </div>
+</body>
+</html>
