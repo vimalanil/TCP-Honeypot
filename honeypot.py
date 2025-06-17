@@ -4,7 +4,7 @@ import threading
 import logging
 import os
 from utils.geoip_lookup import get_geoip_info
-from services.fake_ssh import handle_ssh
+from services.fake_ssh.ssh_server import handle_ssh
 from services.fake_http import start_fake_http
 
 # Setup logging
