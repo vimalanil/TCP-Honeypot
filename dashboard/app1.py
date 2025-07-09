@@ -76,7 +76,7 @@ def index():
                            end_date=end_date,
                            selected_type=event_type,
                            event_counts=dict(event_counts),
-                           project_name="CyberSentinel")
+                           project_name="PhantomPort")
 
 # --- Clear logs ---
 @app.route("/clear_logs")
