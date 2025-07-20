@@ -114,17 +114,11 @@ def index():
             else:
                 event_counts["Other"] += 1
 
-            # Extract IP
+            # Count IPs only (alerts handled elsewhere)
             ip_match = re.search(r"(\d{1,3}\.){3}\d{1,3}", line)
             if ip_match:
                 ip = ip_match.group()
                 ip_counter[ip] += 1
-
-                if ip_counter[ip] == ALERT_THRESHOLD:
-                    system_notification(
-                        "🚨 PhantomGate Alert",
-                        f"Suspicious activity detected!\nIP: {ip}\nAttempts: {ip_counter[ip]}"
-                    )
 
     return render_template("index.html",
                            logs=logs,

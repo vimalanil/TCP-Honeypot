@@ -1,61 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>SecureCorp Internal Dev Portal</title>
-    <link rel="stylesheet" href="static/style.css">
-    <script src="static/script.js" defer></script>
-    <link rel="icon" href="static/favicon.ico" type="image/x-icon">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Index - Crops Internal Portal</title>
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Raleway&family=Inter&display=swap" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
 </head>
-<body>
-    <div class="login-container">
-        <div class="login-box">
-            <div class="logo">
-                <img src="static/logo.png" alt="SecureCorp Logo">
-                <h2>SecureCorp Internal Dev Portal</h2>
-            </div>
 
-            <p style="font-size: 15px; color: #888; margin-bottom: 10px; text-align:center;">
-                Access to internal repositories and development tools.
-            </p>
+<body class="index-page">
 
-            <form method="POST" action="/login">
-                <div class="input-group">
-                    <label for="username">SSH Username</label>
-                    <input type="text" id="username" name="username" value="internal_dev" readonly>
-                </div>
-
-                <div class="input-group">
-                    <label for="password">SSH Password</label>
-                    <input type="password" id="password" name="password" value="corp$ecure#987" readonly>
-                    <span class="toggle-password">👁</span>
-                </div>
-
-                <div class="form-options">
-                    <label><input type="checkbox" name="remember" checked disabled> Remember Me</label>
-                    <a href="#">Forgot Credentials?</a>
-                </div>
-
-                <button type="submit" class="login-btn" disabled>Connect to Repository</button>
-            </form>
-
-            <div class="repo-section">
-                <h3>Available Repositories:</h3>
-                <ul class="repo-list">
-                    <li><a href="#">[PRIVATE] payroll-system.git</a></li>
-                    <li><a href="#">[PRIVATE] vpn-log-collector.git</a></li>
-                </ul>
-                <div class="ssh-note">
-                    <p>Connect via terminal:</p>
-                    <code>ssh internal_dev@192.168.111.69 -p 2222</code>
-                </div>
-            </div>
-        </div>
-
-        <footer>
-            <p>© 2025 SecureCorp. Internal Use Only | Security monitored</p>
-        </footer>
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center">
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">Crops</h1>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#files">Files</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
     </div>
-</body>
-</html>
+  </header>
 
+  <main class="main">
+
+    <section id="hero" class="hero section dark-background">
+      <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
+      <div class="container d-flex flex-column align-items-center">
+        <h2 data-aos="fade-up">PLAN. LAUNCH. GROW.</h2>
+        <p data-aos="fade-up" data-aos-delay="200">Internal DevSecOps Resources</p>
+        <a href="#about" class="btn-get-started" data-aos="fade-up" data-aos-delay="300">Get Started</a>
+      </div>
+    </section>
+
+    <section id="about" class="about section">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-6" data-aos="fade-up">
+            <h3>About Crop Internal DevOps Infrastructure</h3>
+            <img src="assets/img/about.jpg" class="img-fluid rounded-4 mb-4" alt="">
+            <p><strong>Crop</strong> is a secure development environment used by internal teams for automation, tooling, and infrastructure management. All tools are VPN-isolated and monitored.</p>
+            <p>We provide internal access to Git repositories, SSH terminals, and deployment resources within a secured perimeter.</p>
+          </div>
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="250">
+            <div class="content ps-0 ps-lg-5">
+              <p class="fst-italic">Access is restricted to authorized employees only.</p>
+              <ul>
+                <li><i class="bi bi-check-circle-fill"></i> Private repo access for infrastructure tools.</li>
+                <li><i class="bi bi-check-circle-fill"></i> Terminal shell with SSH.</li>
+                <li><i class="bi bi-check-circle-fill"></i> CI/CD deployment for internal scripts.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="files" class="section">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Internal File Access</h2>
+          <p>Secure download zone (employees only)</p>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item"><a href="#">project_plan_Q2_internal.docx</a></li>
+          <li class="list-group-item"><a href="#">vpn_activity_logs_2025.csv</a></li>
+          <li class="list-group-item"><a href="#">backup_script_v3.py</a></li>
+          <li class="list-group-item"><a href="#">analytics_core_module.zip</a></li>
+          <li class="list-group-item"><a href="#">dev_notes_2025.md</a></li>
+          <li class="list-group-item"><a href="#">internal_ssh_access.txt</a> <span class="badge bg-warning text-dark">NEW</span></li>
+          <li class="list-group-item"><a href="#">load_balancer_config.json</a></li>
+          <li class="list-group-item"><a href="#">repo_migration_steps.docx</a></li>
+          <li class="list-group-item"><a href="#">ssh_keygen_instructions.pdf</a></li>
+          <li class="list-group-item"><a href="#">kube_cluster_info.yml</a></li>
+        </ul>
+        <div class="alert alert-secondary mt-4">
+          <strong>internal_ssh_access.txt</strong>: <br>
+          <code>Username: vimal<br>Password: 4442</code>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+    <div class="container text-center mt-4">
+      <p>© 2025 Crop Internal Security Team. All Rights Reserved.</p>
+      <div class="credits">
+        Template from <a href="https://bootstrapmade.com/">BootstrapMade</a> | Distributed by ThemeWagon
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
