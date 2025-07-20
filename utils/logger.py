@@ -1,18 +1,23 @@
 import logging
 import os
+from datetime import datetime
 
-# Create logs directory if it doesn't exist
-log_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'logs')
-os.makedirs(log_dir, exist_ok=True)
+# Define log directory path
+LOG_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'logs')
+os.makedirs(LOG_DIR, exist_ok=True)
 
-# Setup logging
-log_file = os.path.join(log_dir, 'honeypot.log')
+# Log file path
+LOG_FILE = os.path.join(LOG_DIR, 'honeypot.log')
+
+# Logging configuration
 logging.basicConfig(
-    filename=log_file,
+    filename=LOG_FILE,
     level=logging.INFO,
-    format='%(asctime)s - %(message)s'
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
 )
 
-def log_event(message):
+def log_event(message: str):
+    """Log the event to file and print to console."""
     logging.info(message)
-    print(message)  # Optional: Print to console for debugging
+    print(f"[LOG] {datetime.now().strftime('%H:%M:%S')} - {message}")

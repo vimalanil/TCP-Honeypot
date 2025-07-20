@@ -60,6 +60,7 @@
           <option value="GeoIP" {% if selected_type == 'GeoIP' %}selected{% endif %}>GeoIP</option>
           <option value="Error" {% if selected_type == 'Error' %}selected{% endif %}>Error</option>
           <option value="Connection" {% if selected_type == 'Connection' %}selected{% endif %}>Connection</option>
+          <option value="FAKE_SITE_ACCESS" {% if selected_type == 'FAKE_SITE_ACCESS' %}selected{% endif %}>Fake Site Access</option>
         </select>
       </div>
       <div class="col-md-3 d-flex align-items-end gap-2">
@@ -88,6 +89,8 @@
             <div class="text-warning">{{ log.strip() }}</div>
           {% elif 'Connection' in log %}
             <div class="text-success">{{ log.strip() }}</div>
+          {% elif 'FAKE_SITE_ACCESS' in log %}
+            <div class="text-info">{{ log.strip() }}</div>
           {% else %}
             <div>{{ log.strip() }}</div>
           {% endif %}
@@ -110,3 +113,4 @@
   </script>
 </body>
 </html>
+

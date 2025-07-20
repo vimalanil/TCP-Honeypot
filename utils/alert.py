@@ -1,30 +1,53 @@
-# utils/alert.py
-import threading
 import tkinter as tk
-from PIL import Image, ImageTk
+from tkinter import ttk
 
-def system_notification(title, message, image_path="dashboard/static/alert.png"):
-    def show_popup():
-        root = tk.Tk()
-        root.title(title)
-        root.geometry("450x400")
-        root.configure(bg='black')
-        root.resizable(False, False)
+def system_notification(ip, port):
+    root = tk.Tk()
+    root.title("Honeypot Alert")
+    root.configure(bg="#1e1e1e")
+    root.geometry("420x160")
+    root.resizable(False, False)
 
-        try:
-            img = Image.open(image_path)
-            img = img.resize((150, 150))
-            photo = ImageTk.PhotoImage(img)
-            img_label = tk.Label(root, image=photo, bg='black')
-            img_label.image = photo
-            img_label.pack(pady=10)
-        except Exception as e:
-            print(f"Image error: {e}")
+    # Center the window on screen
+    x = (root.winfo_screenwidth() // 2) - (420 // 2)
+    y = (root.winfo_screenheight() // 2) - (160 // 2)
+    root.geometry(f"+{x}+{y}")
 
-        tk.Label(root, text=message, fg='red', bg='black',
-                 font=("Helvetica", 14), wraplength=400, justify="center").pack(pady=10)
-        tk.Button(root, text="OK", command=root.destroy, font=("Helvetica", 12),
-                  bg='gray', fg='white').pack(pady=10)
-        root.mainloop()
+    # Keep the window on top
+    root.attributes("-topmost", True)
 
-    threading.Thread(target=show_popup).start()
+    # Optional: Remove default icon (but not entire border)
+    try:
+        root.iconbitmap('')  # No icon
+    except:
+        pass
+
+    # Message Frame
+    message = f"⚠ Connection detected from:\n{ip}:{port}"
+    label = tk.Label(
+        root,
+        text=message,
+        font=("Segoe UI", 13, "bold"),
+        fg="#f54242",
+        bg="#1e1e1e",
+        justify="center"
+    )
+    label.pack(pady=25)
+
+    # Button Styling
+    style = ttk.Style()
+    style.theme_use('clam')
+    style.configure("Alert.TButton",
+                    foreground="#ffffff",
+                    background="#2d89ef",
+                    font=("Segoe UI", 11),
+                    padding=6)
+    style.map("Alert.TButton",
+              background=[('active', '#1e70bf')])
+
+    # OK Button
+    ok_button = ttk.Button(root, text="OK", style="Alert.TButton", command=root.destroy)
+    ok_button.pack()
+
+    root.mainloop()
+
