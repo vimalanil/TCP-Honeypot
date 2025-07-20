@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SecureCorp Internal Dev Portal</title>
+    <link rel="stylesheet" href="static/style.css">
+    <script src="static/script.js" defer></script>
+    <link rel="icon" href="static/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="logo">
+                <img src="static/logo.png" alt="SecureCorp Logo">
+                <h2>SecureCorp Internal Dev Portal</h2>
+            </div>
+
+            <p style="font-size: 15px; color: #888; margin-bottom: 10px; text-align:center;">
+                Access to internal repositories and development tools.
+            </p>
+
+            <form method="POST" action="/login">
+                <div class="input-group">
+                    <label for="username">SSH Username</label>
+                    <input type="text" id="username" name="username" value="internal_dev" readonly>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">SSH Password</label>
+                    <input type="password" id="password" name="password" value="corp$ecure#987" readonly>
+                    <span class="toggle-password">👁</span>
+                </div>
+
+                <div class="form-options">
+                    <label><input type="checkbox" name="remember" checked disabled> Remember Me</label>
+                    <a href="#">Forgot Credentials?</a>
+                </div>
+
+                <button type="submit" class="login-btn" disabled>Connect to Repository</button>
+            </form>
+
+            <div class="repo-section">
+                <h3>Available Repositories:</h3>
+                <ul class="repo-list">
+                    <li><a href="#">[PRIVATE] payroll-system.git</a></li>
+                    <li><a href="#">[PRIVATE] vpn-log-collector.git</a></li>
+                </ul>
+                <div class="ssh-note">
+                    <p>Connect via terminal:</p>
+                    <code>ssh internal_dev@192.168.111.69 -p 2222</code>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2025 SecureCorp. Internal Use Only | Security monitored</p>
+        </footer>
+    </div>
+</body>
+</html>
+
