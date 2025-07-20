@@ -3,12 +3,14 @@ import threading
 import logging
 import os
 import subprocess
+
 from utils.geoip_lookup import get_geoip_info
 from services.fake_ssh.ssh_server import handle_ssh
 from services.fake_http.fake_http import start_fake_http
-from utils.alert import system_notification  # ✅ Alert popup for real attacker detection
+from utils.alert import system_notification
+from utils.email_alert import send_alert  # ✅ Email alert system
 
-# ─── Setup Logging ───────────────────────────────────────────────────────────
+# ─── Setup Logging ─────────────────────────────────────────────────────────────
 os.makedirs("logs", exist_ok=True)
 logging.basicConfig(
     filename="logs/honeypot.log",
@@ -16,14 +18,14 @@ logging.basicConfig(
     format="%(asctime)s - %(message)s"
 )
 
-# ─── Configuration ───────────────────────────────────────────────────────────
+# ─── Configuration ─────────────────────────────────────────────────────────────
 PORTS = {
     2222: handle_ssh,
     12345: handle_ssh
 }
 HOST = "0.0.0.0"
 
-# ─── Banner ──────────────────────────────────────────────────────────────────
+# ─── Banner ────────────────────────────────────────────────────────────────────
 def show_banner():
     banner = r"""
 \033[94m
@@ -33,7 +35,7 @@ def show_banner():
 ██╔═══╝ ██╔══██║██╔══██║██║╚██╗██║   ██║   ██║   ██║██║╚██╔╝██║██║   ██║██╔══██║   ██║   ██╔══╝    
 ██║     ██║  ██║██║  ██║██║ ╚████║   ██║   ╚██████╔╝██║ ╚═╝ ██║╚██████╔╝██║  ██║   ██║   ███████╗  
 ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝  
-                                PhantomGate Honeypot Detection System 
+                            PhantomGate Honeypot Detection System 
 \033[0m
 \033[94m
 [+] PROJECT  : PhantomGate Honeypot Detection System
@@ -41,13 +43,13 @@ def show_banner():
 [+] PORTS    : 2222 (SSH), 8080 (HTTP), 12345 (Custom Trap)
 [+] LOG FILE : logs/honeypot.log
 [+] AUTHOR   : Anandhu and Vimal
-[+] VERSION  : 1.1
+[+] VERSION  : 1.2
 --------------------------------------------------------------------------------
 \033[0m
 """
     print(banner)
 
-# ─── Dashboard Auto-Start ─────────────────────────────────────────────────────
+# ─── Start Dashboard ───────────────────────────────────────────────────────────
 def start_dashboard():
     try:
         subprocess.Popen(["python3", "dashboard/app1.py"])
@@ -55,20 +57,30 @@ def start_dashboard():
     except Exception as e:
         print(f"\033[91m[!] Failed to start dashboard: {e}\033[0m")
 
-# ─── Handle Incoming Connections ─────────────────────────────────────────────
+# ─── Handle Connections ───────────────────────────────────────────────────────
 def handle_connection(conn, addr, port):
     ip = addr[0]
     logging.info(f"Connection attempt from {ip}:{port}")
-    
+
     geoip_info = get_geoip_info(ip)
     if geoip_info:
         logging.info(f"GeoIP Info: {ip} - {geoip_info}")
-    
-    # ✅ Trigger alert only when real connection comes in
+
+    # ✅ Alert only on real connections
     system_notification(
         "🚨 PhantomGate Alert",
-        f"Connection detected from {ip} on port {port}"
+        f"Connection from {ip} on port {port}"
     )
+
+    # ✅ Send email alert
+    alert_body = f"""
+🚨 Honeypot Alert Triggered
+----------------------------
+IP Address : {ip}
+Port       : {port}
+GeoIP      : {geoip_info}
+"""
+    send_alert("🚨 PhantomGate Honeypot Intrusion", alert_body)
 
     handler = PORTS.get(port)
     if handler:
@@ -76,9 +88,10 @@ def handle_connection(conn, addr, port):
             handler(conn, ip)
         except Exception as e:
             logging.error(f"Error handling {ip}:{port} - {str(e)}")
+
     conn.close()
 
-# ─── Listener Thread ─────────────────────────────────────────────────────────
+# ─── Start Listener ───────────────────────────────────────────────────────────
 def start_listener(port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -89,7 +102,7 @@ def start_listener(port):
         conn, addr = sock.accept()
         threading.Thread(target=handle_connection, args=(conn, addr, port)).start()
 
-# ─── Main ────────────────────────────────────────────────────────────────────
+# ─── Main Execution ──────────────────────────────────────────────────────────
 if __name__ == "__main__":
     show_banner()
     start_dashboard()
@@ -99,6 +112,7 @@ if __name__ == "__main__":
 
     threading.Thread(target=start_fake_http, daemon=True).start()
 
+    # Keep the main thread alive
     while True:
-        pass  # Keeps main thread running
+        pass
 
